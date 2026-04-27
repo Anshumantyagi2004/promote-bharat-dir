@@ -7,7 +7,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 export default function Category({ categories = [] }) {
     return (
         <section className="px-4 md:px-10 py-8 bg-gray-50 w-full">
-            <div className="mb-6 flex justify-between items-center">
+            <div className="mb-8 flex justify-between items-center">
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
                     Categories You May Like
                 </h2>
@@ -15,7 +15,7 @@ export default function Category({ categories = [] }) {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                {categories.map((item, idx) => (
+                {categories.slice(0,8).map((item, idx) => (
                     <Link key={item?.id || idx} href={`/categories/${item?.slug}`}>
                         <motion.div
                             initial={{ opacity: 0, y: 30 }}
