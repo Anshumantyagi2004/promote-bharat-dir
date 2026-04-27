@@ -1,0 +1,48 @@
+"use client";
+import React from "react";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+
+export default function Category({ categories = [] }) {
+    return (
+        <section className="px-4 md:px-10 py-8 bg-gray-50 w-full">
+            <div className="mb-6 flex justify-between items-center">
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+                    Categories You May Like
+                </h2>
+                <Link className="text-[#D01132] hidden sm:flex items-center gap-2 hover:underline" href={"/categories"}>View All <ArrowRight size={18} /></Link>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {categories.map((item, idx) => (
+                    <Link key={item?.id || idx} href={`/categories/${item?.slug}`}>
+                        <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            whileHover={{ scale: 1.05 }}
+                            transition={{ duration: 0.4 }}
+                            className="group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer"
+                        >
+                            <div className="w-full h-70 overflow-hidden">
+                                <img
+                                    src={item?.imageUrl}
+                                    alt={item?.name}
+                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                />
+                            </div>
+
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-70 group-hover:opacity-90 transition"></div>
+
+                            <div className="absolute bottom-3 left-3 right-3">
+                                <h3 className="text-white text-sm md:text-lg font-semibold">
+                                    {item?.name}
+                                </h3>
+                            </div>
+                        </motion.div>
+                    </Link>
+                ))}
+            </div>
+        </section>
+    );
+}
