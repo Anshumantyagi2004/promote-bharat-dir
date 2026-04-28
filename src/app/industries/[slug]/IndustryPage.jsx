@@ -45,13 +45,13 @@ export default function IndustryPage({ industry }) {
                 <div>
                   <div className="mt-1 space-y-1 text-sm text-black">
                     {cat.subCategory?.slice(0, 3).map((sub) => (
-                      <Link key={sub._id} href={`/categories/${sub.slug}`}
+                      <Link key={sub._id} href={`/category/${sub.slug}`}
                         className="block hover:text-blue-500"
                       >
                         ● {sub.name}
                       </Link>
                     ))}
-                    <Link href={"/categories"} className="flex items-center gap-1 hover:text-blue-500">
+                    <Link href={`/categories/${cat.slug}`} className="flex items-center gap-1 hover:text-blue-500">
                       View All <ArrowRight size={15} />
                     </Link>
                   </div>

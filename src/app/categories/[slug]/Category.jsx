@@ -3,7 +3,7 @@ import Link from 'next/link'
 import React from 'react'
 
 export default function Category({ category, industry, subCategory }) {
-  console.log(subCategory)
+  // console.log(subCategory)
   return (
     <div className='px-4 md:px-10 py-5 bg-gray-200'>
       <div className='flex items-center text-gray-800 gap-1'>
@@ -38,7 +38,7 @@ export default function Category({ category, industry, subCategory }) {
               </div>
 
               <Link
-                href={`/${i.slug}`}
+                href={`/category/${i.slug}`}
                 className="text-center font-semibold text-gray-800 hover:text-[#D01132]"
               >
                 {i.name}
@@ -51,7 +51,7 @@ export default function Category({ category, industry, subCategory }) {
                   <Link
                     href={`/products/${product.slug}`}
                     key={index}
-                    className="p-2 min-w-[140px] flex flex-col rounded-lg group items-center text-center border border-gray-200 shadow-sm hover:border-gray-300 hover:shadow-md transition"
+                    className="p-2 min-w-35 flex flex-col rounded-lg group items-center text-center border border-gray-200 shadow-sm hover:border-gray-300 hover:shadow-md transition"
                   >
                     <div className="w-24 h-24 relative mb-2">
                       <Image
