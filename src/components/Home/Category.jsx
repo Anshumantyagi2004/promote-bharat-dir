@@ -15,7 +15,7 @@ export default function Category({ categories = [] }) {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                {categories.slice(0,8).map((item, idx) => (
+                {categories.slice(0, 8).map((item, idx) => (
                     <Link key={item?.id || idx} href={`/categories/${item?.slug}`}>
                         <motion.div
                             initial={{ opacity: 0, y: 30 }}
@@ -32,7 +32,7 @@ export default function Category({ categories = [] }) {
                                 />
                             </div>
 
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-70 group-hover:opacity-90 transition"></div>
+                            <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent opacity-70 group-hover:opacity-90 transition"></div>
 
                             <div className="absolute bottom-3 left-3 right-3">
                                 <h3 className="text-white text-sm md:text-lg font-semibold">

@@ -43,7 +43,7 @@ export default function IndustrySection({ industries = [] }) {
                                     <div key={cat._id}
                                         className="bg-white border rounded-lg p-2 flex gap-3 hover:shadow-md transition h-fit"
                                     >
-                                        <div className="w-20 h-20 relative flex-shrink-0">
+                                        <div className="w-20 h-20 relative shrink-0">
                                             <Image
                                                 src={cat.imageUrl}
                                                 alt={cat.name}
