@@ -1,9 +1,95 @@
+import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
-export default function Category() {
+export default function Category({ category, industry, subCategory }) {
+  console.log(subCategory)
   return (
-    <div className='text-black'>
-      Category
+    <div className='px-4 md:px-10 py-5 bg-gray-200'>
+      <div className='flex items-center text-gray-800 gap-1'>
+        <Link href={"/"} className='text-gray-800 font-bold'>
+          Home {" "}
+        </Link>
+        <p>/</p>
+        <Link href={`/industries/${industry.slug}`} className='text-gray-800 font-bold'>
+          {industry.name}
+        </Link>
+        <p>/</p>
+        <p className='text-gray-600'>
+          {category.name}
+        </p>
+      </div>
+
+      <div className="px-4 py-4 bg-white rounded-lg">
+        <h2 className="text-xl font-semibold mb-4 text-gray-800">
+          {category?.categoryDescription}
+        </h2>
+
+        {subCategory.map((i, idx) => (
+          <div key={idx} className="bg-white rounded-lg border mb-4 flex gap-6 border-gray-200 shadow-md">
+            <div className="w-45 flex flex-col items-center p-4 justify-center border-r border-r-gray-200 pr-4">
+              <div className="w-28 h-28 relative mb-2">
+                <Image
+                  src={i.imageUrl}
+                  alt={i.name}
+                  fill
+                  className="object-contain"
+                />
+              </div>
+
+              <Link
+                href={`/${i.slug}`}
+                className="text-center font-semibold text-gray-800 hover:text-[#D01132]"
+              >
+                {i.name}
+              </Link>
+            </div>
+
+            <div className="flex-1 overflow-x-auto py-3">
+              <div className="flex gap-8 items-start">
+                {i.products.slice(0, 8).map((product, index) => (
+                  <Link
+                    href={`/products/${product.slug}`}
+                    key={index}
+                    className="p-2 min-w-[140px] flex flex-col rounded-lg group items-center text-center border border-gray-200 shadow-sm hover:border-gray-300 hover:shadow-md transition"
+                  >
+                    <div className="w-24 h-24 relative mb-2">
+                      <Image
+                        src={product.media?.[0]?.url}
+                        alt={product.name}
+                        fill
+                        className="object-contain group-hover:scale-105 transition"
+                      />
+                    </div>
+
+                    <p className="text-sm font-medium text-gray-800 group-hover:text-blue-500 transition">
+                      {product.name}
+                    </p>
+
+                    {/* Price */}
+                    {product.price && (
+                      <p className="text-xs text-gray-800 mt-1">
+                        ₹{product.price}
+                      </p>
+                    )}
+                  </Link>
+                ))}
+              </div>
+
+              {i.products.length > 8 && (
+                <div className="flex justify-center mt-4">
+                  <Link
+                    href={`/${i.slug}`}
+                    className="bg-[#2E3192] text-white px-6 py-2 rounded text-sm"
+                  >
+                    View More ↓
+                  </Link>
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }

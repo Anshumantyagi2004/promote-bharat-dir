@@ -29,7 +29,7 @@ export default function IndustryPage({ industry }) {
               className="bg-white flex-col border border-gray-200 rounded-lg p-2 flex gap-2 hover:shadow-md transition h-fit"
             >
               <Link href={`/categories/${cat.slug}`}
-                className="font-bold text-black hover:text-blue-600"
+                className="font-bold text-black hover:text-[#D01132]"
               >
                 {cat.name}
               </Link>
