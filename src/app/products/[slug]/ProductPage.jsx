@@ -64,7 +64,7 @@ export default function ProductPage({ productDetails }) {
 
     return (<>
         <div className="bg-gray-100 min-h-screen">
-            <div className='px-4 md:px-10 py-4 flex items-center text-gray-800 gap-1'>
+            <div className='px-4 md:px-10 pt-4 md:flex hidden items-center text-gray-800 gap-1'>
                 <Link href={"/"} className='text-gray-800 font-bold'>
                     Home {" "}
                 </Link>
@@ -82,7 +82,7 @@ export default function ProductPage({ productDetails }) {
                 </p>
             </div>
 
-            <div className="grid lg:grid-cols-3 gap-4 px-4 md:px-8">
+            <div className="grid grid-cols-1 pt-4 lg:grid-cols-3 gap-4 px-4 md:px-8">
                 <motion.div
                     initial={{ opacity: 0, x: -40 }}
                     animate={{ opacity: 1, x: 0 }}
