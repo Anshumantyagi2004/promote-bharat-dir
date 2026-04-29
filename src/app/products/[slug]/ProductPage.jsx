@@ -17,6 +17,7 @@ import {
     CreditCard,
     Star,
     BadgeCheck,
+    Store,
 } from "lucide-react";
 import {
     FaLinkedin,
@@ -36,11 +37,16 @@ import "swiper/css/autoplay";
 import { Autoplay } from "swiper/modules";
 import { BsTelegram, BsTwitter } from "react-icons/bs";
 import { FaXTwitter } from "react-icons/fa6";
+import ContactModal from "@/components/Main/ContactModal";
+import Image from "next/image";
+import RatingsUI from "@/components/Product/ReviewSection";
 
-export default function ProductPage({ productDetails }) {
+export default function ProductPage({ productDetails, relatedProducts }) {
     const [tab, setTab] = useState("specs");
     const [activeIndex, setActiveIndex] = useState(0);
     const [swiperRef, setSwiperRef] = useState(null);
+    const [openPopup, setOpenPopup] = useState(false);
+    const [popupProduct, setPopupProduct] = useState({});
 
     useEffect(() => {
         if (productDetails?.media?.length) {
@@ -59,8 +65,6 @@ export default function ProductPage({ productDetails }) {
             .slice(0, 2)
             .toUpperCase();
     };
-
-    // console.log(business, productDetails.supplier?.business, productDetails)
 
     return (<>
         <div className="bg-gray-100 min-h-screen">
@@ -232,7 +236,7 @@ export default function ProductPage({ productDetails }) {
 
                     </div>
 
-                    <button className="w-full bg-linear-to-r from-[#D01132] to-[#b50e2b] text-white py-3 rounded-xl font-medium transition hover:opacity-90 hover:shadow-md">
+                    <button onClick={(e) => { e.preventDefault(); setOpenPopup(true); setPopupProduct(productDetails) }} className="w-full bg-linear-to-r from-[#D01132] to-[#b50e2b] text-white py-3 rounded-xl font-medium transition hover:opacity-90 hover:shadow-md">
                         Send Inquiry
                     </button>
                 </motion.div>
@@ -458,7 +462,7 @@ export default function ProductPage({ productDetails }) {
                 </motion.div>
             </div>
 
-            <div className="px-4 md:px-10 my-5">
+            <div className="px-4 md:px-10 mt-5">
                 <div className="bg-white rounded-xl shadow-sm">
                     <div className="flex border-b">
                         <button
@@ -510,6 +514,68 @@ export default function ProductPage({ productDetails }) {
                     </div>
                 </div>
             </div>
+
+            <RatingsUI />
+
+            <div className="py-8 px-4 md:px-10">
+                <h2 className="text-3xl text-[#0A5B93] font-bold mb-5">Related Products</h2>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                    {relatedProducts.map((i, idx) => (
+                        <Link href={`/products/${i.slug}`} key={idx}
+                            className="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition group border border-gray-200"
+                        >
+                            <div className="w-full h-40 relative mb-2">
+                                <Image
+                                    src={i.media?.[0]?.url}
+                                    alt={i.name}
+                                    fill
+                                    className="object-contain group-hover:scale-105 transition"
+                                />
+                            </div>
+
+                            <p className="text-gray-800 font-semibold line-clamp-2 group-hover:text-[#0A5B93] transition">
+                                {i.name}
+                            </p>
+
+                            <div className='flex items-center justify-between mt-1'>
+                                {i.brandName && (
+                                    <div className="flex bg-[#0A5B93] items-center gap-1 text-xs text-white px-2 py-1 rounded-xl">
+                                        <Tag size={14} className="text-white" />
+                                        <span>{i.brandName}</span>
+                                    </div>
+                                )}
+
+                                <div className="flex items-center text-sm font-semibold text-gray-800 justify-center">
+                                    <IndianRupee size={14} className="text-[#0A5B93] -mt-0.5" />
+                                    {i.price ? i.price : "On Request"}
+                                </div>
+                            </div>
+
+                            <div className='flex items-center justify-between mt-1'>
+                                {i.supplierId?.name && (
+                                    <div className="flex items-center gap-1 text-gray-800">
+                                        <Store size={14} className="text-[#0A5B93]" />
+                                        <span>{i.supplierId.name}</span>
+                                    </div>
+                                )}
+
+                                <div className="flex items-center gap-1 text-gray-800">
+                                    <MapPin size={14} className="text-[#0A5B93]" />
+                                    <span>Delhi</span>
+                                </div>
+                            </div>
+
+                            <button onClick={(e) => { e.preventDefault(); setOpenPopup(true); setPopupProduct(i) }}
+                                className='cursor-pointer w-full py-2 rounded-lg bg-[#0A5B93] mt-2'>
+                                Contact Supplier
+                            </button>
+                        </Link>
+                    ))}
+                </div>
+            </div>
         </div>
+
+        <ContactModal open={openPopup} setOpen={setOpenPopup} product={popupProduct} />
     </>);
 }

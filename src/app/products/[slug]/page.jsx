@@ -32,10 +32,12 @@ export async function generateMetadata({ params }) {
 export default async function page({ params }) {
     const { slug } = await params
     const res = await axios.get(`https://promote-bharat.vercel.app/api/product/${slug}`);
-    // console.log(res.data.data)
-    const productDetails =res.data.data
+    const productDetails = res.data.data
+
+    const res4 = await axios.get(`https://promote-bharat.vercel.app/api/category/${productDetails.subCategoryId._id}`);
+    const relatedProducts = res4.data.data.products.filter((i) => (i._id != productDetails._id))
 
     return (
-        <ProductPage productDetails={productDetails} />
+        <ProductPage productDetails={productDetails} relatedProducts={relatedProducts} />
     )
 }

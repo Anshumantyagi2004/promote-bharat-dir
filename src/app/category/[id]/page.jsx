@@ -34,13 +34,13 @@ export default async function page({ params }) {
     const res = await axios.get("https://promote-bharat.vercel.app/api/category");
     const category = res.data.data.find((i) => (i.slug == id))
 
- const res1 = await axios.get("https://promote-bharat.vercel.app/api/industry");
+    const res1 = await axios.get("https://promote-bharat.vercel.app/api/industry");
     const industry = res1.data.find((i) => (i._id == category.industryId))
 
     const res4 = await axios.get(`https://promote-bharat.vercel.app/api/category/${category._id}`);
     const subCategory = res4.data.data
 
     return (
-        <CategoryPage subCategory={subCategory} industry={industry}/>
+        <CategoryPage subCategory={subCategory} industry={industry} />
     )
 }
