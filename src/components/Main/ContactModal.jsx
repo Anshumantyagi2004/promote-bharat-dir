@@ -101,8 +101,8 @@ export default function ContactModal({ open, setOpen, product }) {
                                     />
                                 </div>
 
-                                 <div className="flex items-start border rounded-lg px-2 border-gray-400">
-                                    <MessageCircle size={16} className="text-[#0A5B93] mt-2" />
+                                <div className="flex items-start border rounded-lg px-2 border-gray-400">
+                                    <MessageCircle size={16} className="text-[#0A5B93] mt-3" />
                                     <textarea
                                         type="text"
                                         placeholder="Your Message"
