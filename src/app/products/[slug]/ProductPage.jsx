@@ -34,6 +34,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/autoplay";
 import { Autoplay } from "swiper/modules";
+import { BsTelegram, BsTwitter } from "react-icons/bs";
+import { FaXTwitter } from "react-icons/fa6";
 
 export default function ProductPage({ productDetails }) {
     const [tab, setTab] = useState("specs");
@@ -84,7 +86,7 @@ export default function ProductPage({ productDetails }) {
                 <motion.div
                     initial={{ opacity: 0, x: -40 }}
                     animate={{ opacity: 1, x: 0 }}
-                    className="bg-white p-4 rounded-xl shadow-sm"
+                    className="bg-white p-4 rounded-xl shadow-sm h-fit"
                 >
                     <Swiper
                         modules={[Autoplay]}
@@ -238,7 +240,7 @@ export default function ProductPage({ productDetails }) {
                 <motion.div
                     initial={{ opacity: 0, x: 40 }}
                     animate={{ opacity: 1, x: 0 }}
-                    className="bg-white rounded-2xl shadow-md p-4"
+                    className="bg-white rounded-2xl shadow-md p-4 h-fit"
                 >
                     <div className="flex gap-3">
                         <div className="w-20 h-20 rounded-lg bg-gray-100 flex items-center justify-center text-lg font-bold text-[#0A5B93]">
@@ -378,8 +380,8 @@ export default function ProductPage({ productDetails }) {
                         </div>
                     </div>
 
-                    <div className="border-t border-t-gray-200 pt-2 mt-3">
-                        <div className="flex gap-3 justify-center">
+                    <div className="border-t border-t-gray-200 pt-3 mt-3">
+                        <div className="flex gap-5 justify-center">
                             {business?.social?.linkedin && (
                                 <a
                                     href={business.social.linkedin}
@@ -425,6 +427,30 @@ export default function ProductPage({ productDetails }) {
                                     className="p-2 rounded-lg bg-gray-100 hover:bg-red-100 transition hover:scale-105"
                                 >
                                     <FaYoutube size={18} className="text-red-600" />
+                                </a>
+                            )}
+
+                            {business?.social?.telegram && (
+                                <a
+                                    href={business.social.telegram}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    title="YouTube"
+                                    className="p-2 rounded-lg bg-gray-100 hover:bg-blue-100 transition hover:scale-105"
+                                >
+                                    <BsTelegram size={18} className="text-blue-600" />
+                                </a>
+                            )}
+
+                            {business?.social?.twitter && (
+                                <a
+                                    href={business.social.twitter}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    title="YouTube"
+                                    className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition hover:scale-105"
+                                >
+                                    <FaXTwitter size={18} className="text-black" />
                                 </a>
                             )}
                         </div>
