@@ -58,7 +58,7 @@ export default function ProductPage({ productDetails }) {
             .toUpperCase();
     };
 
-    console.log(business, productDetails.supplier?.business, productDetails)
+    // console.log(business, productDetails.supplier?.business, productDetails)
 
     return (<>
         <div className="bg-gray-100 min-h-screen">
@@ -214,7 +214,7 @@ export default function ProductPage({ productDetails }) {
                             <span className="flex items-center gap-2">
                                 <Package size={14} /> Packaging
                             </span>
-                            <span className="text-[#0A5B93] font-medium text-right max-w-[60%] break-words">
+                            <span className="text-[#0A5B93] font-medium text-right max-w-[60%] wrap-break-word">
                                 {productDetails?.packagingDetails}
                             </span>
                         </div>
