@@ -2,9 +2,13 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Navbar from "@/components/Main/Navbar";
+import Footer from "@/components/Main/Footer";
 
 export default function Categories({ categories }) {
-  return (
+  return (<>
+    <Navbar />
+
     <section className="px-4 md:px-10 py-8 bg-gray-50 w-full">
       <div className="mb-8 flex justify-between items-center">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
@@ -13,7 +17,7 @@ export default function Categories({ categories }) {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {categories.slice(0, 8).map((item, idx) => (
+        {categories.map((item, idx) => (
           <Link key={item?.id || idx} href={`/categories/${item?.slug}`}>
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -42,5 +46,7 @@ export default function Categories({ categories }) {
         ))}
       </div>
     </section>
-  )
+
+    <Footer />
+  </>)
 }

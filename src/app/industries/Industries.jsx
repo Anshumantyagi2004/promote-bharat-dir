@@ -2,9 +2,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import Navbar from "@/components/Main/Navbar";
+import Footer from "@/components/Main/Footer";
 
 export default function Industries({ industries }) {
-  return (
+  return (<>
+    <Navbar />
+
     <section className="px-4 md:px-10 py-10 bg-gray-200 space-y-6">
       {industries.map((industry) => (
         <div key={industry._id} className="p-4 bg-white rounded-lg">
@@ -78,5 +82,7 @@ export default function Industries({ industries }) {
         </div>
       ))}
     </section>
-  )
+
+    <Footer />
+  </>)
 }

@@ -1,5 +1,7 @@
 "use client"
 import ContactModal from '@/components/Main/ContactModal';
+import Footer from '@/components/Main/Footer';
+import Navbar from '@/components/Main/Navbar';
 import Sidebar from '@/components/Main/Sidebar'
 import { IndianRupee, MapPin, Store, Tag } from "lucide-react";
 import Image from "next/image";
@@ -12,6 +14,8 @@ export default function CategoryPage({ subCategory, industry }) {
   const [popupProduct, setPopupProduct] = useState({});
 
   return (<>
+    <Navbar />
+
     <div className='px-4 md:px-10 py-4 bg-gray-200'>
       <div className='flex items-center text-gray-800 gap-1'>
         <Link href={"/"} className='text-gray-800 font-bold'>
@@ -95,5 +99,7 @@ export default function CategoryPage({ subCategory, industry }) {
 
       <ContactModal open={openPopup} setOpen={setOpenPopup} product={popupProduct} />
     </div>
+
+    <Footer />
   </>)
 }

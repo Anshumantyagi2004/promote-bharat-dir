@@ -40,6 +40,8 @@ import { FaXTwitter } from "react-icons/fa6";
 import ContactModal from "@/components/Main/ContactModal";
 import Image from "next/image";
 import RatingsUI from "@/components/Product/ReviewSection";
+import Navbar from "@/components/Main/Navbar";
+import Footer from "@/components/Main/Footer";
 
 export default function ProductPage({ productDetails, relatedProducts }) {
     const [tab, setTab] = useState("specs");
@@ -67,6 +69,8 @@ export default function ProductPage({ productDetails, relatedProducts }) {
     };
 
     return (<>
+        <Navbar />
+
         <div className="bg-gray-100 min-h-screen">
             <div className='px-4 md:px-10 pt-4 md:flex hidden items-center text-gray-800 gap-1'>
                 <Link href={"/"} className='text-gray-800 font-bold'>
@@ -252,9 +256,9 @@ export default function ProductPage({ productDetails, relatedProducts }) {
                         </div>
 
                         <div className="flex-1">
-                            <h2 className="font-semibold text-lg text-gray-800 leading-tight">
+                            <Link href={"/shree-shakti-infratech"} className="hover:text-blue-500 hover:underline font-semibold text-lg text-gray-800 leading-tight">
                                 {business?.companyName}
-                            </h2>
+                            </Link>
 
                             <div className="flex items-center gap-1 text-sm text-gray-500 mt-1">
                                 <MapPin size={14} />
@@ -576,6 +580,7 @@ export default function ProductPage({ productDetails, relatedProducts }) {
             </div>
         </div>
 
+        <Footer />
         <ContactModal open={openPopup} setOpen={setOpenPopup} product={popupProduct} />
     </>);
 }

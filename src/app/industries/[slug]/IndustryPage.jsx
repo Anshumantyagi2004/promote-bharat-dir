@@ -1,10 +1,14 @@
+import Footer from '@/components/Main/Footer'
+import Navbar from '@/components/Main/Navbar'
 import { ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
 export default function IndustryPage({ industry }) {
-  return (
+  return (<>
+    <Navbar />
+
     <div className='px-4 md:px-10 py-5 bg-gray-200'>
       <div className='md:flex hidden items-center text-gray-800 gap-1'>
         <Link href={"/"} className='text-gray-800 font-bold'>
@@ -62,5 +66,7 @@ export default function IndustryPage({ industry }) {
         </div>
       </div>
     </div>
-  )
+
+    <Footer />
+  </>)
 }
